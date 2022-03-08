@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Infraestructure.Models.IN05>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Familias</h2>
+@if (TempData["Message"] != null)
+{
+    String mensaje = "";
+
+    mensaje = @"<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+<span aria-hidden='true'>&times;</span> </button>
+<strong>Error!</strong> " + TempData["Message"] + " </div>";
+
+@Html.Raw(mensaje);
+}
+
+@if (TempData["Exito"] != null)
+{
+    String mensaje = "";
+
+    mensaje = @"<div class='alert alert-success alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+<span aria-hidden='true'>&times;</span> </button>
+<strong>Éxito</strong> " + TempData["Exito"] + " </div>";
+
+@Html.Raw(mensaje);
+}
+<p>
+    <a class="btn btn-success" href="@Url.Action("Create", "Familia")">Agregar familia</a>
+    
+</p>
+<div class="col-md-12" style="overflow-x: scroll">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IDFamilia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreFamilia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioIngreso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDFamilia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreFamilia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsuarioIngreso)
+                </td>
+                <td>
+                    @if (item.Estado == 1)
+                    {
+                        <div class="badge alert-success">Activo</div>
+                    }
+                    else
+                    {
+                        <div class="badge alert-danger">Inactivo</div>
+                    }
+
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>
+

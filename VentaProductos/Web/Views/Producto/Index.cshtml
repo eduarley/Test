@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Infraestructure.Models.IN04>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Productos</h2>
+@if (TempData["Message"] != null)
+{
+    String mensaje = "";
+
+    mensaje = @"<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+<span aria-hidden='true'>&times;</span> </button>
+<strong>Error!</strong> " + TempData["Message"] + " </div>";
+
+@Html.Raw(mensaje);
+}
+
+@if (TempData["Exito"] != null)
+{
+    String mensaje = "";
+
+    mensaje = @"<div class='alert alert-success alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+<span aria-hidden='true'>&times;</span> </button>
+<strong>Éxito</strong> " + TempData["Exito"] + " </div>";
+
+@Html.Raw(mensaje);
+}
+<p>
+    <a class="btn btn-success" href="@Url.Action("Create", "Producto")">Agregar Producto</a>
+
+</p>
+<div class="col-md-12" style="overflow-x: scroll">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CodigoProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SaldoInventario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaIngreso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioIngreso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IN05.NombreFamilia)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SaldoInventario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaIngreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsuarioIngreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IN05.NombreFamilia)
+        </td>
+
+    </tr>
+        }
+
+    </table>
+</div>
+
